@@ -1,4 +1,5 @@
 import {NativeModules} from 'react-native';
+import { Platform } from 'react-native';
 
 const {FullStory} = NativeModules;
 
@@ -11,6 +12,8 @@ const LogLevel = {
   Assert: 5, // Clamps to Error on Android
 }
 
-FullStory.LogLevel = LogLevel;
+if (Platform.OS !== 'web') {
+  FullStory.LogLevel = LogLevel;
+}
 
 export default FullStory;
